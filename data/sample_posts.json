@@ -1,0 +1,5 @@
+[
+  {"id": 1, "name": "Pole A", "lat": 40.7128, "lng": -74.0060, "status": "active"},
+  {"id": 2, "name": "Pole B", "lat": 40.7138, "lng": -74.0050, "status": "maintenance"},
+  {"id": 3, "name": "Pole C", "lat": 40.7148, "lng": -74.0040, "status": "inactive"}
+]
