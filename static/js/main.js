@@ -119,8 +119,55 @@ document.addEventListener('DOMContentLoaded', function () {
     attribution: '© OpenStreetMap contributors',
   }).addTo(map);
 
+<<<<<<< HEAD
   // Force Leaflet to recognize the size immediately
   setTimeout(() => map.invalidateSize(), 50);
+=======
+  // Rotation wrapper to allow visual rotation (tiles & overlays) without rotating controls
+  const mapContainer = document.getElementById('map');
+  const mapPane = map.getPane('mapPane');
+  const rotateWrap = document.createElement('div');
+  rotateWrap.className = 'rotate-wrapper';
+  mapContainer.insertBefore(rotateWrap, mapPane);
+  rotateWrap.appendChild(mapPane);
+  let rotation = 0;
+  function setMapRotation(deg) {
+    rotation = ((deg % 360) + 360) % 360;
+    rotateWrap.style.transform = `rotate(${rotation}deg)`;
+  }
+  function rotateBy(delta) { setMapRotation(rotation + delta); }
+
+  // Rotate control: left/right/reset and slider
+  const RotateControl = L.Control.extend({
+    options: { position: 'topleft' },
+    onAdd: function() {
+      const container = L.DomUtil.create('div', 'leaflet-bar rotate-control');
+      container.innerHTML = `
+        <button id="rot-left" title="Rotate left 15°">◀</button>
+        <input id="rot-range" type="range" min="0" max="360" step="1" value="0" style="width:80px; vertical-align:middle;">
+        <button id="rot-right" title="Rotate right 15°">▶</button>
+        <button id="rot-reset" title="Reset rotation">↺</button>
+      `;
+      L.DomEvent.disableClickPropagation(container);
+      setTimeout(() => {
+        const left = container.querySelector('#rot-left');
+        const right = container.querySelector('#rot-right');
+        const reset = container.querySelector('#rot-reset');
+        const range = container.querySelector('#rot-range');
+        left.addEventListener('click', () => { rotateBy(-15); range.value = rotation; });
+        right.addEventListener('click', () => { rotateBy(15); range.value = rotation; });
+        reset.addEventListener('click', () => { setMapRotation(0); range.value = rotation; });
+        range.addEventListener('input', (e) => setMapRotation(parseInt(e.target.value, 10)));
+      }, 0);
+      return container;
+    }
+  });
+  map.addControl(new RotateControl());
+
+  const postsLayer = L.layerGroup();
+  const latlongLayer = L.layerGroup();
+  const bounds = L.latLngBounds();
+>>>>>>> upstream/main
 
   const searchInput = document.getElementById('search-input');
   const filterButtons = Array.from(document.querySelectorAll('.chip[data-filter]'));
