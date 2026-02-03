@@ -43,6 +43,36 @@
     </section>
     <section class="panel panel-posts">
       <h2 class="panel-title">Posts <span id="post-count" class="count"></span></h2>
+      <div class="posts-tools">
+        <label class="search">
+          <span class="sr-only">Search posts</span>
+          <input id="search-input" class="search-input" type="search" placeholder="Search by name or ID…" autocomplete="off">
+        </label>
+        <div class="filters" role="group" aria-label="Status filter">
+          <button class="chip is-active" type="button" data-filter="all">All</button>
+          <button class="chip" type="button" data-filter="active">Active</button>
+          <button class="chip" type="button" data-filter="maintenance">Maintenance</button>
+          <button class="chip" type="button" data-filter="inactive">Inactive</button>
+        </div>
+      </div>
+      <div class="stats" aria-label="Post statistics">
+        <div class="stat">
+          <div class="stat-label">Total</div>
+          <div id="stat-total" class="stat-value">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Active</div>
+          <div id="stat-active" class="stat-value">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Maint.</div>
+          <div id="stat-maintenance" class="stat-value">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Inactive</div>
+          <div id="stat-inactive" class="stat-value">—</div>
+        </div>
+      </div>
       <ul id="posts-list" class="posts-list" role="list"></ul>
     </section>
   </aside>
