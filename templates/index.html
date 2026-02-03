@@ -2,14 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Electrical Post Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leyeco — Electrical Post Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
   <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-  <h1>Interactive Electrical Post Map</h1>
-  <div id="map"></div>
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo-wrap">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <div>
+          <h1 class="logo">Leyeco</h1>
+          <p class="tagline">Electrical post mapping</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <section class="panel panel-legend">
+      <h2 class="panel-title">Status legend</h2>
+      <ul class="legend-list" role="list">
+        <li class="legend-item">
+          <span class="legend-dot legend-dot--active" aria-hidden="true"></span>
+          <span>Active</span>
+        </li>
+        <li class="legend-item">
+          <span class="legend-dot legend-dot--maintenance" aria-hidden="true"></span>
+          <span>Maintenance</span>
+        </li>
+        <li class="legend-item">
+          <span class="legend-dot legend-dot--inactive" aria-hidden="true"></span>
+          <span>Inactive</span>
+        </li>
+      </ul>
+    </section>
+    <section class="panel panel-posts">
+      <h2 class="panel-title">Posts <span id="post-count" class="count"></span></h2>
+      <ul id="posts-list" class="posts-list" role="list"></ul>
+    </section>
+  </aside>
+
+  <main class="map-container">
+    <div id="map" class="map"></div>
+  </main>
 
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
   <script src="/static/js/main.js"></script>
